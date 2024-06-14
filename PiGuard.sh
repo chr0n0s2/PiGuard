@@ -29,4 +29,4 @@ sudo systemctl daemon-reload
 sudo systemctl enable piguard.service
 sudo systemctl start piguard.service
 
-echo "Installation completed."
+echo "Installation completed"
