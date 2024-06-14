@@ -1,0 +1,18 @@
+[Unit]
+Description=Uninterruptible Power Supply Pi Guard V3.B.1 for Raspberry
+After=syslog.target network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/bin
+Environment="PATH=/usr/local/bin:/usr/bin:/sbin:/usr/sbin:/bin"
+
+ExecStart=/usr/local/bin/piguard.pyc --log-level info 
+
+Restart=on-failure
+RestartSec=30s
+ExecStop=/bin/kill -s TERM $MAINPID
+
+
+[Install]
+WantedBy=multi-user.target
