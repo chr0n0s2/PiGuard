@@ -1,5 +1,5 @@
 [Unit]
-Description=Uninterruptible Power Supply Pi Guard V3.B.1 for Raspberry
+Description=Uninterruptible Power Supply Pi Guard V3.1.B for Raspberry
 After=syslog.target network.target
 
 [Service]
