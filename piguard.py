@@ -338,7 +338,8 @@ I2C_SEND_ENABLED = True
         except Exception as e:
             self.log.critical(f"Error al configurar los pines GPIO: {e}")
             sys.exit(1)
-            
+        
+        time.sleep(15)    
         # Configurar los tiempos de apagado (Se deben actualizar en el codigo de PIC al inicio)
         if self.I2C_SEND_ENABLED:
             self.set_shutdown_time()    # Escribe Shutdown Delay
