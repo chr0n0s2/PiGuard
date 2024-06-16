@@ -339,7 +339,7 @@ I2C_SEND_ENABLED = True
             self.log.critical(f"Error al configurar los pines GPIO: {e}")
             sys.exit(1)
         
-        time.sleep(15)    
+            
         # Configurar los tiempos de apagado (Se deben actualizar en el codigo de PIC al inicio)
         if self.I2C_SEND_ENABLED:
             self.set_shutdown_time()    # Escribe Shutdown Delay
@@ -352,6 +352,7 @@ I2C_SEND_ENABLED = True
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY}\t[min]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
                 else:
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY-177}\t[hrs]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
+        time.sleep(15)
  
         # Bucle infinito para esperar interrupciones   
         try:
