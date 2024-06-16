@@ -193,7 +193,7 @@ I2C_SEND_ENABLED = True
                 try:
                     with open(os.path.join(self.home_dir, "UPS_History_POWER.dbg"), "a+") as fb:
                         now = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S.%f")[:-3]
-                        fb.write(f"{now}\n\tThe Volta UPS commands the shutdown of the Raspberry Pi.\n\n")
+                        fb.write(f"{now}\tThe Volta UPS commands the shutdown of the Raspberry Pi.\n\n")
 
                 except Exception as e:
                     self.log.error("Error al escribir en el archivo de registro: %s", e)
@@ -211,7 +211,7 @@ I2C_SEND_ENABLED = True
         try:
             # Enviar comando 0x01 para obtener voltaje
             self.bus.write_byte(self.DIR_I2C, self.READ_VOLTAGE_CMD)
-            time.sleep(0.2)  
+            time.sleep(0.1)  
             vol = self.bus.read_byte(self.DIR_I2C)
             return vol
         except IOError as e:
@@ -223,7 +223,7 @@ I2C_SEND_ENABLED = True
         try:
             # Enviar comando 0x02 para obtener modo
             self.bus.write_byte(self.DIR_I2C, self.READ_MODE_CMD)
-            time.sleep(0.2)  
+            time.sleep(0.1)  
             modo = self.bus.read_byte(self.DIR_I2C)
             return modo
         except IOError as e:
@@ -242,7 +242,7 @@ I2C_SEND_ENABLED = True
             self.bus.write_byte(self.DIR_I2C, self.SET_SHUTDOWN_TIME_CMD)
             
             # Pequeña pausa para que la UPS procese el comando
-            time.sleep(0.2)  
+            time.sleep(0.1)  
             
             # Envia el tiempo SHUTDOWN_DELAY
             self.bus.write_byte(self.DIR_I2C, self.SHUTDOWN_DELAY)
@@ -259,7 +259,7 @@ I2C_SEND_ENABLED = True
             self.bus.write_byte(self.DIR_I2C, self.WATCHDOG_RPI_CMD)
             
             # Pequeña pausa para que la UPS procese el comando
-            time.sleep(0.2) 
+            time.sleep(0.1) 
              
             # Envia el tiempo WATCHDOG_RPI
             self.bus.write_byte(self.DIR_I2C, self.WATCHDOG_RPI)
@@ -276,7 +276,7 @@ I2C_SEND_ENABLED = True
             self.bus.write_byte(self.DIR_I2C, self.POST_SHUTDOWN_CMD)
             
             # Pequeña pausa para que la UPS procese el comando
-            time.sleep(0.2) 
+            time.sleep(0.1) 
              
             # Envia el tiempo POST_SHUTDOWN
             self.bus.write_byte(self.DIR_I2C, self.POST_SHUTDOWN)
@@ -352,7 +352,7 @@ I2C_SEND_ENABLED = True
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY}\t[min]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
                 else:
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY-177}\t[hrs]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
-        time.sleep(15)
+        time.sleep(10)
  
         # Bucle infinito para esperar interrupciones   
         try:
