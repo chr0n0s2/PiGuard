@@ -199,7 +199,7 @@ I2C_SEND_ENABLED = True
                     self.log.error("Error al escribir en el archivo de registro: %s", e)
 
                 # Apagar si el bucle termina 
-                time.sleep(1) 
+                time.sleep(3) 
                 #os.system('/sbin/shutdown -h now')
                 subprocess.call(['/sbin/shutdown', '-h', 'now'])
                     
@@ -352,7 +352,7 @@ I2C_SEND_ENABLED = True
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY}\t[min]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
                 else:
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY-177}\t[hrs]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
-        time.sleep(2)
+        time.sleep(1) #Se requiere este tiempo para que no arroje un fallo aleatoreo por tiempo para modo y voltaje
  
         # Bucle infinito para esperar interrupciones   
         try:
