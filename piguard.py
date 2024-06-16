@@ -281,6 +281,8 @@ I2C_SEND_ENABLED = True
             # Envia el tiempo POST_SHUTDOWN
             self.bus.write_byte(self.DIR_I2C, self.POST_SHUTDOWN)
             
+            time.sleep(1) #Se requiere este tiempo para que no arroje un fallo aleatoreo por tiempo para modo y voltaje
+            
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)     
         except IOError as e:
             self.log.error("Error de I/O al escribir el post shutdown time: %s", e)
@@ -352,7 +354,7 @@ I2C_SEND_ENABLED = True
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY}\t[min]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
                 else:
                     f.write(f"{now}\n\tShutdown delay: \t{self.SHUTDOWN_DELAY-177}\t[hrs]\n\tWatchdog Rpi: \t\t{self.WATCHDOG_RPI}\t[min]\n\tPost Shutdown: \t\t{self.POST_SHUTDOWN}\t[s]\n")
-        time.sleep(1) #Se requiere este tiempo para que no arroje un fallo aleatoreo por tiempo para modo y voltaje
+        
  
         # Bucle infinito para esperar interrupciones   
         try:
