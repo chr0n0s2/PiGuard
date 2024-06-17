@@ -7,7 +7,7 @@ Type=simple
 WorkingDirectory=/usr/local/bin
 Environment="PATH=/usr/local/bin:/usr/bin:/sbin:/usr/sbin:/bin"
 
-ExecStart=/usr/local/bin/piguard.py --log-level info 
+ExecStart=/usr/local/bin/piguard.pyc --log-level info 
 
 Restart=on-failure
 RestartSec=30s
