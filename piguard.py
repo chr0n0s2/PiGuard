@@ -246,6 +246,7 @@ I2C_SEND_ENABLED = True
             
             # Envia el tiempo SHUTDOWN_DELAY
             self.bus.write_byte(self.DIR_I2C, self.SHUTDOWN_DELAY)
+            time.sleep(0.5) #Se requiere este tiempo para que no arroje un fallo aleatoreo en la siguiente recepción de dato
             
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)
         except IOError as e:
@@ -263,6 +264,7 @@ I2C_SEND_ENABLED = True
              
             # Envia el tiempo WATCHDOG_RPI
             self.bus.write_byte(self.DIR_I2C, self.WATCHDOG_RPI)
+            time.sleep(0.5) #Se requiere este tiempo para que no arroje un fallo aleatoreo en la siguiente recepción de dato
             
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)     
         except IOError as e:
@@ -281,7 +283,7 @@ I2C_SEND_ENABLED = True
             # Envia el tiempo POST_SHUTDOWN
             self.bus.write_byte(self.DIR_I2C, self.POST_SHUTDOWN)
             
-            time.sleep(1) #Se requiere este tiempo para que no arroje un fallo aleatoreo por tiempo para modo y voltaje
+            time.sleep(0.5) #Se requiere este tiempo para que no arroje un fallo aleatoreo en la siguiente recepción de dato
             
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)     
         except IOError as e:
