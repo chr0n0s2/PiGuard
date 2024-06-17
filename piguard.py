@@ -240,13 +240,13 @@ I2C_SEND_ENABLED = True
             
             # Enviar comando 0x03 con el tiempo en minutos
             self.bus.write_byte(self.DIR_I2C, self.SET_SHUTDOWN_TIME_CMD)
-            
             # Pequeña pausa para que la UPS procese el comando
             time.sleep(0.1)  
             
             # Envia el tiempo SHUTDOWN_DELAY
             self.bus.write_byte(self.DIR_I2C, self.SHUTDOWN_DELAY)
-            time.sleep(0.5) #Se requiere este tiempo para que no arroje un fallo aleatoreo en la siguiente recepción de dato
+            # Pequeña pausa para que la UPS procese el comando
+            time.sleep(0.1) 
             
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)
         except IOError as e:
@@ -258,13 +258,13 @@ I2C_SEND_ENABLED = True
         try:
             # Enviar comando 0x04 con el tiempo en minutos
             self.bus.write_byte(self.DIR_I2C, self.WATCHDOG_RPI_CMD)
-            
             # Pequeña pausa para que la UPS procese el comando
             time.sleep(0.1) 
              
             # Envia el tiempo WATCHDOG_RPI
             self.bus.write_byte(self.DIR_I2C, self.WATCHDOG_RPI)
-            time.sleep(0.5) #Se requiere este tiempo para que no arroje un fallo aleatoreo en la siguiente recepción de dato
+            # Pequeña pausa para que la UPS procese el comando
+            time.sleep(0.1) 
             
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)     
         except IOError as e:
@@ -276,14 +276,13 @@ I2C_SEND_ENABLED = True
         try:
             # Enviar comando 0x05 con el tiempo en segundos
             self.bus.write_byte(self.DIR_I2C, self.POST_SHUTDOWN_CMD)
-            
             # Pequeña pausa para que la UPS procese el comando
             time.sleep(0.1) 
              
             # Envia el tiempo POST_SHUTDOWN
             self.bus.write_byte(self.DIR_I2C, self.POST_SHUTDOWN)
-            
-            time.sleep(0.5) #Se requiere este tiempo para que no arroje un fallo aleatoreo en la siguiente recepción de dato
+            # Pequeña pausa para que la UPS procese el comando
+            time.sleep(0.1) 
             
             # Buscar forma de verificar si el comando se ejecutó correctamente (esto depende de la implementación de tu UPS)     
         except IOError as e:
